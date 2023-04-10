@@ -1,0 +1,315 @@
+<!--
+Proyecto: FactuPro hecho por Joshua Flores Ayala
+Linkedin: https://www.linkedin.com/in/joshua-ayala-388b581b2/
+Github: https://github.com/JoshuaAyala
+Twitter: https://twitter.com/joshua4yala
+-->
+
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <meta name="description" content="">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+            crossorigin="anonymous">
+            <script src="https://kit.fontawesome.com/413325b7ce.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="resources/css/main.css">
+    </head>
+    <body>
+        <div class="sucess-message" id="mensaje" style="z-index: 5;">
+
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col formulario">
+                    <form action="" id="formulario" action="" name="formulario">
+                        <fieldset class="row">
+                            <legend>Información de la factura</legend>
+                            <div class="col-md-3">
+                                <label for="type">Tipo de factura</label>
+                                <select name="type" id="type"
+                                    class="form-control" required>
+                                    <option value="" disabled selected>Factura</option>
+                                    <option value="direct">Directa</option>
+                                    <option value="credit">Crédito</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="noFact" value="1">Número de factura</label>
+                                <input type="text"value="1" name="noFact" id="noFact"
+                                    class="form-control" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="dateFact">Fecha de factura</label>
+                                <input type="date" name="dateFact" id="dateFact"
+                                    class="form-control" readonly>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Información del cliente</legend>
+                            <div class="row align-items-center">
+                                
+                                <div class=" col" >
+                                    <label for="claveCliente">Clave</label>
+                                    <div class="input-group">
+                                    <input type="text" name="claveCliente"
+                                        id="claveCliente" class="form-control"
+                                        placeholder="Clave"
+                                        required>
+                                        <btn class="input-group-text btnBuscar"
+                                        id="basic-addon1" onclick="buscarCliente(document.getElementById('claveCliente').value)">Buscar</btn>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label for="rfc">RFC</label>
+                                    <input type="text" name="rfc" id="rfc"
+                                        placeholder="RFC"
+                                        class="form-control" readonly required>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" name="nombre" id="nombre"
+                                        placeholder="Nombre"
+                                        class="form-control" readonly required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="vendedor">Vendedor</label>
+                                    <input type="text" name="vendedor"
+                                        id="vendedor" class="form-control"
+                                        placeholder="0"
+                                        required readonly>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="descuento">Descuento</label>
+                                    <input type="number" name="descuento"
+                                        id="descuento" step="0.01" value="0.00"
+                                        min="0" max="100" class="form-control"
+                                        placeholder="0.00"
+                                        required readonly>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Dirección del cliente</legend>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="calle">Calle</label>
+                                    <input type="text" name="calle" id="calle"
+                                        placeholder="Calle"
+                                        class="form-control" readonly required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="numExt">Núm. Ext.</label>
+                                    <input type="text" name="numExt" id="numExt"
+                                        placeholder="Ext"
+                                        class="form-control" readonly
+                                        required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="numInt">Núm. Int.</label>
+                                    <input type="text" name="numInt" id="numInt"
+                                        placeholder="Int"
+                                        class="form-control" readonly
+                                        required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="colonia">Colonia</label>
+                                    <input type="text" name="colonia"
+                                        id="colonia" class="form-control"
+                                        placeholder="Colonia" readonly
+                                        required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="poblacion">Población</label>
+                                    <input type="text" name="poblacion"
+                                        placeholder="Población"
+                                        class="form-control" readonly
+                                        id="poblacion" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="cp">C.P.</label>
+                                    <input type="text" name="cp" id="cp"
+                                        placeholder="CP" readonly
+                                        class="form-control" required>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Producto</legend>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <label for="calle">Cantidad</label>
+                                    <input type="text" name="cantidad"
+                                        id="cantidad" placeholder="0"
+                                        class="form-control" required>
+                                </div>
+                                <div class="col">
+                                    <label for="numExt">UPC</label>
+                                    <input type="number" name="upc" id="upc"
+                                        placeholder="Ingrese UPC"
+                                        class="form-control" maxlength="20"
+                                        required>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label for="numInt">Prc. Unt.</label>
+                                    <input type="text" name="preciounitario"
+                                        id="preciounitario" placeholder="0.00"
+                                        class="form-control"
+                                        required>
+                                </div>
+                            </div>
+                        
+                        <center>
+                            <button id="btnFacturar" onclick="facturar()" class="btn
+                                btn-dark">Facturar</button>
+                                <button id="btnFacturar" onclick="limpiar()" class="btn
+                                btn-dark">Limpiar</button>
+                        </center>
+                    </fieldset>
+                    </form>
+                    </div>
+                    <div class="col">
+                        <div id="cardFactura">
+                            <div id="facturas">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <template id="templateFactura">
+                <article class="card mb-2" id="factura-generada">
+                    <div class="card-body">
+                        <h5>
+                            <div class="row">
+                                <div class="col input-group">
+                                    <span class="input-group-text"
+                                        id="basic-addon1">Factura</span>
+                                    <input type="text" class="form-control"
+                                        readonly>
+                                </div>
+                                <div class="col input-group">
+                                    <span class="input-group-text"
+                                        id="basic-addon1">Fecha</span>
+                                    <input type="date" class="form-control"
+                                        readonly>
+                                </div>
+                                <div class="col input-group">
+                                    <span class="input-group-text"
+                                        id="basic-addon1"><i class="far fa-file-pdf" style="margin:0;"></i></span>
+                                    <span class="form-control" style="cursor: pointer;" onclick="descargarPDF()">Descargar</span>
+                                </div>
+                            </div>
+                        </h5>
+                        <h6>Facturado a:</h6>
+                        <div class="row">
+                            <label for="razonSocial" id="razonSocial">Joshua
+                                Flores Ayala</label> <br>
+                            <label for="RFCFactura" id="RFCFactura">FOAJ0222HBCLYSA5</label>
+                            <label for="direccionFiscal" id="direccionFiscal">Calle
+                                Guijon, Ext. 17002, Int. 101, Tijuana, Baja
+                                California, México.</label>
+                        </div>
+                        <hr>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Cant.</th>
+                                    <th scope="col">UPC</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Prc. Unt.</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row" id="cant">1</th>
+                                    <td>751492637396</td>
+                                    <td id="descripcion">GTX 1650 Dual Fan</td>
+                                    <td id="preciounitario">$6,031.48</td>
+                                    <td id="preciototalproduct">$6514.00</td>
+                                </tr>
+                                <tr>
+                                    <th id="IVA" scope="row">IVA</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td id="productIVA">$1,950.00</td>
+                                </tr>
+                                <tr>
+                                    <th id="total" scope="row">Total</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td id="productTotal">$1,950.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </template>
+            
+            <template class="container" id="templateCliente">
+                <div class="card mt-4">
+                    <div class="card-header">
+                        Información del cliente
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Datos personales</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>ID:</strong> <span id="id"></span></p>
+                                <p><strong>Clave:</strong> <span id="clave"></span></p>
+                                <p><strong>RFC:</strong> <span id="rfc"></span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+                                <p><strong>Vendedor:</strong> <span
+                                        id="vendedor"></span></p>
+                                <p><strong>Descuento:</strong> <span
+                                        id="descuento"></span></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <h5 class="card-title">Dirección</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Calle:</strong> <span id="calle"></span></p>
+                                <p><strong>Núm. Ext.:</strong> <span
+                                        id="numExt"></span></p>
+                                <p><strong>Núm. Int.:</strong> <span
+                                        id="numInt"></span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Colonia:</strong> <span id="colonia"></span></p>
+                                <p><strong>Población:</strong> <span
+                                        id="poblacion"></span></p>
+                                <p><strong>CP:</strong> <span id="cp"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+            <script src="resources/js/app.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+    </body>
+</html>

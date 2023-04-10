@@ -1,0 +1,123 @@
+<!--
+Proyecto: FactuPro hecho por Joshua Flores Ayala
+Linkedin: https://www.linkedin.com/in/joshua-ayala-388b581b2/
+Github: https://github.com/JoshuaAyala
+Twitter: https://twitter.com/joshua4yala
+-->
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <meta name="description" content="">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous">
+    <link rel="stylesheet" href="resources/css/main.css">
+  </head>
+  <body>
+    <div class="sucess-message" id="mensaje" style="z-index: 5;">
+
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col formulario">
+          <form action="" id="formulario" name="formulario">
+            <form action="" id="formulario" name="formulario">
+              <fieldset>
+                <legend>Datos del cliente</legend>
+                <div class="row align-items-center">
+
+                  <div class="col">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre"
+                      class="form-control" required>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="rfc">RFC</label>
+                    <input type="text" maxlength="13" name="rfc" id="rfc"
+                      class="form-control" required>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="claveCliente">Clave</label>
+                    <input type="text" name="claveCliente" id="claveCliente"
+                      class="form-control" required>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col-md-4">
+                    <label for="calle">Calle</label>
+                    <input type="text" name="calle" id="calle"
+                      class="form-control" required>
+                  </div>
+                  <div class="col-md-1">
+                    <label for="numExt">Núm. Ext.</label>
+                    <input type="text" name="numExt" id="numExt"
+                      class="form-control" required>
+                  </div>
+                  <div class="col-md-1">
+                    <label for="numInt">Núm. Int.</label>
+                    <input type="text" name="numInt" id="numInt"
+                      class="form-control">
+                  </div>
+                  <div class="col-md-3">
+                    <label for="colonia">Colonia</label>
+                    <input type="text" name="colonia" id="colonia"
+                      class="form-control" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="cp">C.P.</label>
+                    <input type="text" name="cp" id="cp"
+                      class="form-control" required>
+                  </div>
+                </div>
+                <div class="row align-items-center">
+                  <div class="col">
+                    <label for="poblacion">Población</label>
+                    <input type="text" name="poblacion" id="poblacion"
+                      class="form-control" required>
+                  </div>
+
+                  <div class="col">
+                    <label for="estado">Estado</label>
+                    <input type="text" name="estado" id="estado"
+                      class="form-control" required>
+                  </div>
+                  <div class="col-md-1">
+                    <label for="vendedor">Vendedor</label>
+                    <input type="text" name="vendedor" id="vendedor"
+                      class="form-control" required>
+                  </div>
+                  <div class="col-md-1">
+                    <label for="descuento">Descuento</label>
+                    <input type="text" name="descuento" id="descuento"
+                      class="form-control" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="credito">Credito</label>
+                    <input type="text" name="credito" id="credito"
+                      class="form-control" required>
+                  </div>
+                </div>
+                <center style="margin-top: 20px;">
+                  <button class="btn btn-dark" id="registrar"
+                    onclick="registrarCliente()" name="registrar">Registrar
+                    Cliente</button>
+                  <button class="btn btn-dark" id="registrar"
+                    onclick="limpiar()" name="registrar">Limpiar</button>
+                </center>
+              </fieldset>
+            </form>
+          </div>
+          <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+          <script src="resources/js/altaclientes.js"></script>
+        </body>
+      </html>
